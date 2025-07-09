@@ -3,11 +3,16 @@
 //Number Guessing Game
 <br>
 import java.util.Scanner;
+<br>
 import java.util.Random;
+<br>
 
 public class NumberGuessingGame {
+<br>
     public static void main(String[] args) {
+    <br>
         Scanner scanner = new Scanner(System.in);
+        <br>
         Random random = new Random();
 
         int lowerBound = 1;
