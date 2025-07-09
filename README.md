@@ -315,8 +315,11 @@ public class CurrencyConverter {
 import java.util.*;
 
 class User {
+<br>
     private String username;
+    <br>
     private String password;
+    <br>
 
     public User(String username, String password) {
         this.username = username;
@@ -333,9 +336,13 @@ class User {
 }
 
 class Transaction {
+<br>
     private String type;
+    <br>
     private double amount;
+    <br>
     private Date date;
+    <br>
 
     public Transaction(String type, double amount) {
         this.type = type;
@@ -350,9 +357,13 @@ class Transaction {
 }
 
 class BankAccount {
+<br>
     private User user;
+    <br>
     private double balance;
+    <br>
     private List<Transaction> transactions;
+    <br>
 
     public BankAccount(User user) {
         this.user = user;
@@ -394,8 +405,11 @@ class BankAccount {
 }
 
 public class BankSystem {
+<br>
     private Map<String, BankAccount> accounts = new HashMap<>();
+    <br>
     private Scanner scanner = new Scanner(System.in);
+    <br>
 
     public void registerUser() {
         System.out.print("Enter username: ");
