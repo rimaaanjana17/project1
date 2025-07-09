@@ -180,9 +180,13 @@ class BankAccount {
 }
 
 // Class representing the ATM machine
+<br>
 class ATM {
+<br>
     private BankAccount account;
+    <br>
     private Scanner scanner;
+    <br>
 
     public ATM(BankAccount account) {
         this.account = account;
