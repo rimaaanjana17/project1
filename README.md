@@ -314,7 +314,127 @@ public class CurrencyConverter {
 
 
 
-//LEVEL-3 TASK-2 BANK ACCOUNT MANAGEMENT SYSTEM
+
+//LEVEL-3 TASK-1 TO-DO LIST APPLICATION
+
+import java.io.*;
+import java.util.*;
+
+public class SimpleToDoList {
+    static final String FILE_NAME = "tasks.txt";
+    static List<String> tasks = new ArrayList<>();
+    static Scanner scanner = new Scanner(System.in);
+
+    public static void main(String[] args) {
+        loadTasks();
+
+        int choice;
+        do {
+            System.out.println("\n--- To-Do List Menu ---");
+            System.out.println("1. Add Task");
+            System.out.println("2. Remove Task");
+            System.out.println("3. Mark Task as Complete");
+            System.out.println("4. Show Tasks");
+            System.out.println("5. Save and Exit");
+            System.out.print("Enter choice: ");
+            choice = scanner.nextInt();
+            scanner.nextLine(); // clear input buffer
+
+            switch (choice) {
+                case 1 -> addTask();
+                case 2 -> removeTask();
+                case 3 -> markComplete();
+                case 4 -> showTasks();
+                case 5 -> saveTasks();
+                default -> System.out.println("Invalid choice.");
+            }
+        } while (choice != 5);
+    }
+
+    static void addTask() {
+        System.out.print("Enter task description: ");
+        String desc = scanner.nextLine();
+
+        System.out.print("Enter category: ");
+        String category = scanner.nextLine();
+
+        System.out.print("Enter due date (yyyy-mm-dd): ");
+        String dueDate = scanner.nextLine();
+
+        String task = "[ ] " + desc + " | Category: " + category + " | Due: " + dueDate;
+        tasks.add(task);
+        System.out.println("Task added.");
+    }
+
+    static void removeTask() {
+        showTasks();
+        System.out.print("Enter task number to remove: ");
+        int index = scanner.nextInt();
+        if (index >= 1 && index <= tasks.size()) {
+            tasks.remove(index - 1);
+            System.out.println("Task removed.");
+        } else {
+            System.out.println("Invalid number.");
+        }
+    }
+
+    static void markComplete() {
+        showTasks();
+        System.out.print("Enter task number to mark as complete: ");
+        int index = scanner.nextInt();
+        if (index >= 1 && index <= tasks.size()) {
+            String task = tasks.get(index - 1);
+            if (task.startsWith("[ ]")) {
+                tasks.set(index - 1, task.replace("[ ]", "[X]"));
+                System.out.println("Task marked as complete.");
+            } else {
+                System.out.println("Task already completed.");
+            }
+        } else {
+            System.out.println("Invalid number.");
+        }
+    }
+
+    static void showTasks() {
+        if (tasks.isEmpty()) {
+            System.out.println("No tasks found.");
+        } else {
+            for (int i = 0; i < tasks.size(); i++) {
+                System.out.println((i + 1) + ". " + tasks.get(i));
+            }
+        }
+    }
+
+    static void saveTasks() {
+        try (PrintWriter writer = new PrintWriter(new FileWriter(FILE_NAME))) {
+            for (String task : tasks) {
+                writer.println(task);
+            }
+            System.out.println("Tasks saved to " + FILE_NAME);
+        } catch (IOException e) {
+            System.out.println("Error saving tasks: " + e.getMessage());
+        }
+    }
+
+    static void loadTasks() {
+        try (Scanner fileScanner = new Scanner(new File(FILE_NAME))) {
+            while (fileScanner.hasNextLine()) {
+                tasks.add(fileScanner.nextLine());
+            }
+        } catch (FileNotFoundException e) {
+            // File not found — start with empty task list
+        }
+    }
+}
+
+
+
+
+
+
+
+
+// TASK-2 BANK ACCOUNT MANAGEMENT SYSTEM
 
 import java.util.*;
 
