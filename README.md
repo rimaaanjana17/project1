@@ -1,7 +1,7 @@
 # project1
 <br>
-//LEVEL-1
-//TASK-1 NUMBER GAME
+//LEVEL-1 TASK-1 NUMBER GAME
+
 <br>
 import java.util.Scanner;
 <br>
@@ -82,6 +82,7 @@ public class NumberGuessingGame {
 
 
 // TASK-2 STUDENT GRADE CALCULATOR
+
 <br>
 import java.util.Scanner;
 
@@ -138,12 +139,13 @@ public class GradeCalculator {
 
 
 
-//LEVEL-2
-//TASK-1 ATM INTERFACE
+//LEVEL-2 TASK-1 ATM INTERFACE
+
 <br>
 import java.util.Scanner;
 
 // Class representing the user's bank account
+<br>
 class BankAccount {
     private double balance;
 
