@@ -241,16 +241,25 @@ public class SimpleATM {
 
 
 //TASK-2 CURRENCY CONVERTER
+
 <br>
 import java.io.IOException;
+<br>
 import java.net.URI;
+<br>
 import java.net.http.*;
+<br>
 import java.util.Scanner;
+<br>
 import org.json.JSONObject;
+<br>
 
 public class CurrencyConverter {
+<br>
     private static final String API_KEY = "YOUR_API_KEY_HERE";
+    <br>
     private static final String API_URL = "https://api.thecurrencyapi.com/convert";
+    <br>
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
