@@ -318,12 +318,18 @@ public class CurrencyConverter {
 //LEVEL-3 TASK-1 TO-DO LIST APPLICATION
 
 import java.io.*;
+<br>
 import java.util.*;
+<br>
 
 public class SimpleToDoList {
+<br>
     static final String FILE_NAME = "tasks.txt";
+    <br>
     static List<String> tasks = new ArrayList<>();
+    <br>
     static Scanner scanner = new Scanner(System.in);
+    <br>
 
     public static void main(String[] args) {
         loadTasks();
