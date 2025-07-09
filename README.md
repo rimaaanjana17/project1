@@ -309,3 +309,218 @@ public class CurrencyConverter {
 }
 
 
+
+//LEVEL-3 TASK-2 BANK ACCOUNT MANAGEMENT SYSTEM
+
+import java.util.*;
+
+class User {
+    private String username;
+    private String password;
+
+    public User(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+
+    public boolean authenticate(String username, String password) {
+        return this.username.equals(username) && this.password.equals(password);
+    }
+
+    public String getUsername() {
+        return username;
+    }
+}
+
+class Transaction {
+    private String type;
+    private double amount;
+    private Date date;
+
+    public Transaction(String type, double amount) {
+        this.type = type;
+        this.amount = amount;
+        this.date = new Date();
+    }
+
+    @Override
+    public String toString() {
+        return type + ": $" + amount + " on " + date;
+    }
+}
+
+class BankAccount {
+    private User user;
+    private double balance;
+    private List<Transaction> transactions;
+
+    public BankAccount(User user) {
+        this.user = user;
+        this.balance = 0.0;
+        this.transactions = new ArrayList<>();
+    }
+
+    public boolean deposit(double amount) {
+        if (amount <= 0) return false;
+        balance += amount;
+        transactions.add(new Transaction("Deposit", amount));
+        return true;
+    }
+
+    public boolean withdraw(double amount) {
+        if (amount <= 0 || amount > balance) return false;
+        balance -= amount;
+        transactions.add(new Transaction("Withdrawal", amount));
+        return true;
+    }
+
+    public double getBalance() {
+        return balance;
+    }
+
+    public void applyInterest(double rate) {
+        double interest = balance * rate / 100;
+        balance += interest;
+        transactions.add(new Transaction("Interest", interest));
+    }
+
+    public List<Transaction> getTransactionHistory() {
+        return transactions;
+    }
+
+    public User getUser() {
+        return user;
+    }
+}
+
+public class BankSystem {
+    private Map<String, BankAccount> accounts = new HashMap<>();
+    private Scanner scanner = new Scanner(System.in);
+
+    public void registerUser() {
+        System.out.print("Enter username: ");
+        String username = scanner.next();
+        if (accounts.containsKey(username)) {
+            System.out.println("User already exists!");
+            return;
+        }
+
+        System.out.print("Enter password: ");
+        String password = scanner.next();
+
+        User user = new User(username, password);
+        BankAccount account = new BankAccount(user);
+        accounts.put(username, account);
+        System.out.println("User registered successfully.");
+    }
+
+    public BankAccount loginUser() {
+        System.out.print("Enter username: ");
+        String username = scanner.next();
+
+        System.out.print("Enter password: ");
+        String password = scanner.next();
+
+        BankAccount account = accounts.get(username);
+        if (account != null && account.getUser().authenticate(username, password)) {
+            System.out.println("Login successful.");
+            return account;
+        } else {
+            System.out.println("Invalid credentials.");
+            return null;
+        }
+    }
+
+    public void accountMenu(BankAccount account) {
+        int choice;
+        do {
+            System.out.println("\n---- Bank Menu ----");
+            System.out.println("1. Deposit");
+            System.out.println("2. Withdraw");
+            System.out.println("3. Check Balance");
+            System.out.println("4. View Transaction History");
+            System.out.println("5. Apply Interest");
+            System.out.println("6. Logout");
+            System.out.print("Enter choice: ");
+            choice = scanner.nextInt();
+
+            switch (choice) {
+                case 1:
+                    System.out.print("Enter amount to deposit: ");
+                    double deposit = scanner.nextDouble();
+                    if (account.deposit(deposit)) {
+                        System.out.println("Deposit successful.");
+                    } else {
+                        System.out.println("Invalid deposit amount.");
+                    }
+                    break;
+                case 2:
+                    System.out.print("Enter amount to withdraw: ");
+                    double withdraw = scanner.nextDouble();
+                    if (account.withdraw(withdraw)) {
+                        System.out.println("Withdrawal successful.");
+                    } else {
+                        System.out.println("Invalid or insufficient balance.");
+                    }
+                    break;
+                case 3:
+                    System.out.println("Current balance: $" + account.getBalance());
+                    break;
+                case 4:
+                    System.out.println("Transaction History:");
+                    for (Transaction t : account.getTransactionHistory()) {
+                        System.out.println(t);
+                    }
+                    break;
+                case 5:
+                    System.out.print("Enter interest rate (%): ");
+                    double rate = scanner.nextDouble();
+                    account.applyInterest(rate);
+                    System.out.println("Interest applied.");
+                    break;
+                case 6:
+                    System.out.println("Logging out...");
+                    break;
+                default:
+                    System.out.println("Invalid choice.");
+            }
+        } while (choice != 6);
+    }
+
+    public void start() {
+        int option;
+        do {
+            System.out.println("\n==== Welcome to Bank System ====");
+            System.out.println("1. Register");
+            System.out.println("2. Login");
+            System.out.println("3. Exit");
+            System.out.print("Choose option: ");
+            option = scanner.nextInt();
+
+            switch (option) {
+                case 1:
+                    registerUser();
+                    break;
+                case 2:
+                    BankAccount account = loginUser();
+                    if (account != null) {
+                        accountMenu(account);
+                    }
+                    break;
+                case 3:
+                    System.out.println("Thank you. Exiting system.");
+                    break;
+                default:
+                    System.out.println("Invalid option.");
+            }
+        } while (option != 3);
+    }
+
+    public static void main(String[] args) {
+        new BankSystem().start();
+    }
+}
+
+
+
+
