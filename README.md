@@ -81,6 +81,7 @@ public class NumberGuessingGame {
 
 
 //STUDENT GRADE CALCULATOR
+<br>
 import java.util.Scanner;
 
 public class GradeCalculator {
