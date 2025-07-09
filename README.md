@@ -147,6 +147,7 @@ import java.util.Scanner;
 // Class representing the user's bank account
 <br>
 class BankAccount {
+<br>
     private double balance;
 
     public BankAccount(double initialBalance) {
