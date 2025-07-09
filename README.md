@@ -225,10 +225,15 @@ class ATM {
 }
 
 // Main class
+<br>
 public class SimpleATM {
+<br>
     public static void main(String[] args) {
+    <br>
         BankAccount myAccount = new BankAccount(1000.00); // Starting balance
+        <br>
         ATM atm = new ATM(myAccount);
+        <br>
         atm.showMenu();
     }
 }
