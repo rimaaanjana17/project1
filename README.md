@@ -144,8 +144,11 @@ public class GradeCalculator {
 import java.util.Scanner;
 
 // BankAccount class to manage balance
+<br>
 class BankAccount {
+<br>
     private double balance;
+    <br>
 
     public BankAccount(double initialBalance) {
         balance = initialBalance;
@@ -174,7 +177,9 @@ class BankAccount {
 // ATM class to interact with user
 <br>
 class ATM {
+<br>
     private BankAccount account;
+    <br>
     private Scanner scanner;
 
     public ATM(BankAccount account) {
@@ -239,11 +244,17 @@ class ATM {
 }
 
 // Main class to run the program
+<br>
 public class Main {
+<br>
     public static void main(String[] args) {
+    <br>
         BankAccount account = new BankAccount(1000.0); // starting with $1000
+        <br>
         ATM atm = new ATM(account);
+        <br>
         atm.start();
+        <br>
     }
 }
 
