@@ -1,5 +1,5 @@
 # internorbit_task
-#INTERN ORBIT
+
 <br>
 //LEVEL-1 TASK-1 NUMBER GAME
 
